@@ -1,1 +1,6 @@
 <p>This is ai-chat</p>
+<button (click)="doLogout()">Logout</button>
+<form [formGroup]="aiChat">
+  <input type="text" formControlName="msg">
+  <button (click)="onSubmit()">Send</button>
+</form>

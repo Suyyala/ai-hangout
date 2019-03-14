@@ -1,27 +1,40 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
+import {AuthService} from '../auth.service';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent implements OnInit, OnDestroy {
 
   loggedIn = false;
-  constructor(private router: Router) {}
+  userName = 'Sridhar';
+  constructor(private router: Router,
+              private authService: AuthService) {}
 
   doLogin() {
-    this.loggedIn = true;
-    this.router.navigate(['/ai-chat']).then(() => {
-      console.log('routing done');
+    console.log(this.userName);
+    this.authService.doAuthenticate().subscribe((authenticated: boolean) => {
+      console.log('Authenticated: ', authenticated);
+      this.loggedIn = authenticated;
+      if (this.loggedIn) {
+        this.router.navigate(['/ai-chat']).then(() => {
+          console.log('routing done');
+        });
+      }
     });
-  }
-
-  doLogout() {
-    this.loggedIn = false;
   }
 
   ngOnInit(): void {
   }
+
+  ngOnDestroy(): void {}
+
+  displayUser() {
+    console.log(this.userName);
+  }
+
+
 }
