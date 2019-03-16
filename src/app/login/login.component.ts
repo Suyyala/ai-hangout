@@ -16,7 +16,8 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   doLogin() {
     console.log(this.userName);
-    this.authService.doAuthenticate().subscribe((authenticated: boolean) => {
+    const auth$ = this.authService.doAuthenticate();
+    auth$.subscribe((authenticated: boolean) => {
       console.log('Authenticated: ', authenticated);
       this.loggedIn = authenticated;
       if (this.loggedIn) {

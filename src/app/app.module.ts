@@ -6,19 +6,35 @@ import { AppComponent } from './app.component';
 import { AiChatComponent } from './ai-chat/ai-chat.component';
 import { LoginComponent } from './login/login.component';
 import {ReactiveFormsModule} from '@angular/forms';
+import {AngularFireModule} from '@angular/fire';
+import {AngularFireDatabaseModule} from '@angular/fire/database';
+import {AngularFireAuthModule} from '@angular/fire/auth';
+import {environment} from '../environments/environment';
+import { PhoneLoginComponent } from './phone-login/phone-login.component';
+import { ChatFormComponent } from './chat-form/chat-form.component';
+import {AngularFirestore} from '@angular/fire/firestore';
+
 
 @NgModule({
   declarations: [
     AppComponent,
     AiChatComponent,
-    LoginComponent
+    LoginComponent,
+    PhoneLoginComponent,
+    ChatFormComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    AngularFireModule,
+    AngularFireDatabaseModule,
+    AngularFireAuthModule,
+    AngularFireModule.initializeApp(environment.firebaseConfig),
   ],
-  providers: [],
+  providers: [
+    AngularFirestore
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

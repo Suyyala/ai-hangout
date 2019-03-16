@@ -1,6 +1,6 @@
-import { Injectable } from '@angular/core';
-import {of} from 'rxjs';
-import {delay} from 'rxjs/operators';
+import {Injectable} from '@angular/core';
+import {Observable} from 'rxjs';
+import {map} from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -10,6 +10,11 @@ export class AuthService {
   constructor() { }
 
   doAuthenticate() {
-    return of(true).pipe(delay(200));
+
+   return new Observable((observer) => {
+     setTimeout( () => {
+       observer.next(true);
+     }, 2000);
+   }).pipe(map((data: boolean) => data));
   }
 }

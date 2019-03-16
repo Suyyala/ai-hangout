@@ -1,6 +1,5 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
-import {FormControl, FormGroup} from '@angular/forms';
 
 @Component({
   selector: 'app-ai-chat',
@@ -8,21 +7,7 @@ import {FormControl, FormGroup} from '@angular/forms';
   styleUrls: ['./ai-chat.component.css']
 })
 export class AiChatComponent implements OnInit {
-
-  aiChat = new FormGroup({
-    msg: new FormControl(''),
-  });
-
-  userName: string;
-  @Input()
-  get user() {
-    return this.userName;
-  }
-  set user(val) {
-    this.userName = val;
-    this.userChanged.emit(this.userName);
-  }
-  @Output() userChanged = new EventEmitter();
+  user: any;
 
   constructor(private router: Router) { }
 
@@ -36,8 +21,5 @@ export class AiChatComponent implements OnInit {
     });
   }
 
-  onSubmit() {
-    console.log(this.aiChat.value);
-  }
 
 }
