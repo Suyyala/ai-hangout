@@ -4,11 +4,11 @@ import {AiChatService} from '../ai-chat.service';
 import {AngularFirestore} from '@angular/fire/firestore';
 
 @Component({
-  selector: 'app-chat-form',
-  templateUrl: './chat-form.component.html',
-  styleUrls: ['./chat-form.component.css']
+  selector: 'app-chat',
+  templateUrl: './chat.component.html',
+  styleUrls: ['./chat.component.css']
 })
-export class ChatFormComponent implements OnInit {
+export class ChatComponent implements OnInit {
   aiChat = new FormGroup({
     msg: new FormControl(''),
   });

@@ -11,7 +11,7 @@ import {AngularFireDatabaseModule} from '@angular/fire/database';
 import {AngularFireAuthModule} from '@angular/fire/auth';
 import {environment} from '../environments/environment';
 import { PhoneLoginComponent } from './phone-login/phone-login.component';
-import { ChatFormComponent } from './chat-form/chat-form.component';
+import { ChatComponent } from './chat/chat.component';
 import {AngularFirestore} from '@angular/fire/firestore';
 
 
@@ -21,7 +21,7 @@ import {AngularFirestore} from '@angular/fire/firestore';
     AiChatComponent,
     LoginComponent,
     PhoneLoginComponent,
-    ChatFormComponent,
+    ChatComponent,
   ],
   imports: [
     BrowserModule,
