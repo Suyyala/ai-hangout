@@ -1,5 +1,6 @@
 import {Injectable} from '@angular/core';
 import {AngularFirestore} from '@angular/fire/firestore';
+import {map} from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -7,9 +8,10 @@ import {AngularFirestore} from '@angular/fire/firestore';
 export class AiChatService {
 
   chatRoom: any;
+  aiChats: any;
+  userId = 'rahim';
 
-  constructor(private angularFireStore: AngularFirestore) {
-    // this.chatRoom = this.angularFireStore.doc<any>('messages');
+  constructor(private readonly afs: AngularFirestore) {
   }
 
   postMessage(message: any) {
@@ -19,5 +21,25 @@ export class AiChatService {
 
   getMessage() {
     console.log('In getMessage');
+  }
+
+  getChatRooms() {
+
+    return this.afs.collection('ai-users')
+      .doc('rahim')
+      .collection('docs')
+      .doc('chat-rooms')
+      .snapshotChanges()
+      .pipe(
+        map(actions => {
+          const data: any = actions.payload.data();
+          console.log(data);
+          return data.rooms;
+        }),
+      );
+  }
+
+  getUsers() {
+
   }
 }

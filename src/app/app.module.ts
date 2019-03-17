@@ -13,6 +13,7 @@ import {environment} from '../environments/environment';
 import { PhoneLoginComponent } from './phone-login/phone-login.component';
 import { ChatComponent } from './chat/chat.component';
 import {AngularFirestore} from '@angular/fire/firestore';
+import { AiChatRoomsComponent } from './ai-chat-rooms/ai-chat-rooms.component';
 
 
 @NgModule({
@@ -22,6 +23,7 @@ import {AngularFirestore} from '@angular/fire/firestore';
     LoginComponent,
     PhoneLoginComponent,
     ChatComponent,
+    AiChatRoomsComponent,
   ],
   imports: [
     BrowserModule,
