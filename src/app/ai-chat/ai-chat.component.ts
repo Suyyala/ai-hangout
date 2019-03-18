@@ -8,7 +8,7 @@ import {Router} from '@angular/router';
 })
 export class AiChatComponent implements OnInit {
   user: any;
-  room = 'room2';
+  room;
 
   constructor(private router: Router) { }
 

@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input, OnChanges, OnInit, SimpleChange, SimpleChanges} from '@angular/core';
 import {FormControl, FormGroup} from '@angular/forms';
 import {AiChatService} from '../ai-chat.service';
 import {AngularFirestore} from '@angular/fire/firestore';
@@ -8,7 +8,7 @@ import {AngularFirestore} from '@angular/fire/firestore';
   templateUrl: './chat.component.html',
   styleUrls: ['./chat.component.css']
 })
-export class ChatComponent implements OnInit {
+export class ChatComponent implements OnInit, OnChanges {
   aiChat = new FormGroup({
     msg: new FormControl(''),
   });
@@ -21,6 +21,14 @@ export class ChatComponent implements OnInit {
   onSubmit() {
     console.log(this.aiChat.value);
     this.aiChatService.postMessage(this.roomId, this.aiChat.value.msg);
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+    const roomId: SimpleChange = changes.roomId;
+    console.log(changes);
+    console.log('prev value: ', roomId.previousValue);
+    console.log('curr value: ', roomId.currentValue);
+    this.roomId = roomId.currentValue;
   }
 
 }

@@ -1,6 +1,6 @@
 <p>This is ai-chat</p>
 <button (click)="doLogout()">Logout</button>
-<app-ai-chat-rooms (roomSelected)="onRoomSelected($event)"></app-ai-chat-rooms>
-<app-chat-messages [roomId]='room'></app-chat-messages>
-<app-chat [roomId]='room'></app-chat>
+<app-chat-rooms (roomSelected)="onRoomSelected($event)"></app-chat-rooms>
+<app-chat-messages [roomId]='room' *ngIf="room"></app-chat-messages>
+<app-chat [roomId]='room' *ngIf="room"></app-chat>
 
