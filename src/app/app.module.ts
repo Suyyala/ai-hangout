@@ -13,7 +13,7 @@ import {environment} from '../environments/environment';
 import { PhoneLoginComponent } from './phone-login/phone-login.component';
 import { ChatComponent } from './chat/chat.component';
 import {AngularFirestore} from '@angular/fire/firestore';
-import { AiChatRoomsComponent } from './ai-chat-rooms/ai-chat-rooms.component';
+import { ChatRoomsComponent } from './chat-rooms/chat-rooms.component';
 import { ChatMessagesComponent } from './chat-messages/chat-messages.component';
 
 
@@ -24,7 +24,7 @@ import { ChatMessagesComponent } from './chat-messages/chat-messages.component';
     LoginComponent,
     PhoneLoginComponent,
     ChatComponent,
-    AiChatRoomsComponent,
+    ChatRoomsComponent,
     ChatMessagesComponent,
   ],
   imports: [

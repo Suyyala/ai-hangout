@@ -3,11 +3,11 @@ import {AiChatService} from '../ai-chat.service';
 import {stringify} from 'querystring';
 
 @Component({
-  selector: 'app-ai-chat-rooms',
-  templateUrl: './ai-chat-rooms.component.html',
-  styleUrls: ['./ai-chat-rooms.component.css']
+  selector: 'app-chat-rooms',
+  templateUrl: './chat-rooms.component.html',
+  styleUrls: ['./chat-rooms.component.css']
 })
-export class AiChatRoomsComponent implements OnInit {
+export class ChatRoomsComponent implements OnInit {
 
   chatRooms: any;
   @Output() roomSelected = new EventEmitter<string>();
