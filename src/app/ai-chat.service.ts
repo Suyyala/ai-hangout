@@ -14,19 +14,15 @@ export class AiChatService {
 
   postMessage(roomId: string, msg: any) {
     console.log('In PostMessage', msg);
-    const chatRoomRef = this.afs.collection('ai-chats')
+    return this.afs.collection('ai-chats')
       .doc(roomId)
       .collection('docs')
-      .doc('messages');
-    chatRoomRef.update({
+      .doc('messages')
+      .update({
       messages: firestore.FieldValue.arrayUnion({
         message: msg,
         userId: 'rahim'
       })
-    }).then( () => {
-      console.log('msg posted successfully');
-    }).catch( (error) => {
-      console.log('failed to post msg', error);
     });
 
   }

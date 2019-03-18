@@ -20,7 +20,15 @@ export class ChatComponent implements OnInit, OnChanges {
 
   onSubmit() {
     console.log(this.aiChat.value);
-    this.aiChatService.postMessage(this.roomId, this.aiChat.value.msg);
+    if (this.roomId) {
+      this.aiChatService.postMessage(this.roomId, this.aiChat.value.msg)
+        .then( (data) => {
+          console.log('Posted');
+        })
+        .catch((data) => {
+          console.log('message post failed');
+        });
+    }
   }
 
   ngOnChanges(changes: SimpleChanges) {
