@@ -8,6 +8,7 @@ import {Router} from '@angular/router';
 })
 export class AiChatComponent implements OnInit {
   user: any;
+  room = 'room2';
 
   constructor(private router: Router) { }
 
@@ -19,6 +20,11 @@ export class AiChatComponent implements OnInit {
     this.router.navigate(['/login']).then(() => {
       console.log('Done with logout');
     });
+  }
+
+  onRoomSelected(event) {
+    this.room = event.valueOf();
+    console.log(this.room);
   }
 
 

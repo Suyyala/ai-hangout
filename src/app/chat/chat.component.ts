@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {FormControl, FormGroup} from '@angular/forms';
 import {AiChatService} from '../ai-chat.service';
 import {AngularFirestore} from '@angular/fire/firestore';
@@ -12,6 +12,7 @@ export class ChatComponent implements OnInit {
   aiChat = new FormGroup({
     msg: new FormControl(''),
   });
+  @Input() roomId;
   constructor(private aiChatService: AiChatService) { }
 
   ngOnInit() {
@@ -19,7 +20,7 @@ export class ChatComponent implements OnInit {
 
   onSubmit() {
     console.log(this.aiChat.value);
-    this.aiChatService.postMessage(this.aiChat.value.msg);
+    this.aiChatService.postMessage(this.roomId, this.aiChat.value.msg);
   }
 
 }

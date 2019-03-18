@@ -14,6 +14,7 @@ import { PhoneLoginComponent } from './phone-login/phone-login.component';
 import { ChatComponent } from './chat/chat.component';
 import {AngularFirestore} from '@angular/fire/firestore';
 import { AiChatRoomsComponent } from './ai-chat-rooms/ai-chat-rooms.component';
+import { ChatMessagesComponent } from './chat-messages/chat-messages.component';
 
 
 @NgModule({
@@ -24,6 +25,7 @@ import { AiChatRoomsComponent } from './ai-chat-rooms/ai-chat-rooms.component';
     PhoneLoginComponent,
     ChatComponent,
     AiChatRoomsComponent,
+    ChatMessagesComponent,
   ],
   imports: [
     BrowserModule,

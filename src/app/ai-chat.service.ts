@@ -7,18 +7,15 @@ import {firestore} from 'firebase';
   providedIn: 'root'
 })
 export class AiChatService {
-
-  chatRoom: any;
-  aiChats: any;
   userId = 'rahim';
 
   constructor(private readonly afs: AngularFirestore) {
   }
 
-  postMessage(msg: any) {
+  postMessage(roomId: string, msg: any) {
     console.log('In PostMessage', msg);
     const chatRoomRef = this.afs.collection('ai-chats')
-      .doc('room1')
+      .doc(roomId)
       .collection('docs')
       .doc('messages');
     chatRoomRef.update({
@@ -34,14 +31,25 @@ export class AiChatService {
 
   }
 
-  getMessage() {
+  getMessages(roomId: string) {
     console.log('In getMessage');
+    return this.afs.collection('ai-chats')
+      .doc(roomId)
+      .collection('docs')
+      .doc('messages')
+      .snapshotChanges()
+      .pipe(
+        map( actions => {
+          const data: any = actions.payload.data();
+          return data.messages;
+        })
+      );
   }
 
-  getChatRooms() {
+  getChatRooms(user: string) {
 
     return this.afs.collection('ai-users')
-      .doc('rahim')
+      .doc(user)
       .collection('docs')
       .doc('chat-rooms')
       .snapshotChanges()
