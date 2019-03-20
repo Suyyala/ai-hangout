@@ -1,6 +1,5 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {AiChatService} from '../ai-chat.service';
-import {stringify} from 'querystring';
 
 @Component({
   selector: 'app-chat-rooms',
