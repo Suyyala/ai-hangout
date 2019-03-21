@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {FormControl, FormGroup} from '@angular/forms';
 import {AngularFireAuth} from '@angular/fire/auth';
 import {auth} from 'firebase';
@@ -20,6 +20,7 @@ export class PhoneLoginComponent implements OnInit {
   private reCaptcha: any;
   windowRef: any = window;
   user: any;
+  @Output() verifyDone = new EventEmitter<boolean>();
 
   constructor(private afAuth: AngularFireAuth,
               private router: Router) { }
@@ -45,9 +46,10 @@ export class PhoneLoginComponent implements OnInit {
       .then( (user) => {
         this.user = user;
         console.log('Phone verificaiton sucess!', user);
-        this.router.navigate(['/ai-chat']);
+        this.verifyDone.emit(user.user.phoneNumber);
       }).catch((error) => {
         console.log('something bad happended', error);
+        this.verifyDone.emit(null);
     }) ;
   }
 }

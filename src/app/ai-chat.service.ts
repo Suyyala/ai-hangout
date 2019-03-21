@@ -95,7 +95,17 @@ export class AiChatService {
 
   }
 
-  getUsers() {
+  createUser(userId: string) {
+    return this.afs.collection('ai-users')
+      .doc(userId)
+      .collection('docs')
+      .doc('user-info')
+      .set({name: '', userId});
+  }
 
+  getUser(userId: string) {
+    return this.afs.collection('ai-users')
+      .doc(userId)
+      .get();
   }
 }

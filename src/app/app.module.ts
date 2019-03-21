@@ -16,6 +16,7 @@ import {AngularFirestore} from '@angular/fire/firestore';
 import {ChatRoomsComponent} from './chat-rooms/chat-rooms.component';
 import {ChatMessagesComponent} from './chat-messages/chat-messages.component';
 import { AddChatComponent } from './add-chat/add-chat.component';
+import { SignupComponent } from './signup/signup.component';
 
 
 @NgModule({
@@ -28,6 +29,7 @@ import { AddChatComponent } from './add-chat/add-chat.component';
     ChatRoomsComponent,
     ChatMessagesComponent,
     AddChatComponent,
+    SignupComponent,
   ],
   imports: [
     BrowserModule,
