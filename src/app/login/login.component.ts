@@ -8,34 +8,12 @@ import {AuthService} from '../auth.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit, OnDestroy {
-
-  loggedIn = false;
-  userName = 'Sridhar';
   constructor(private router: Router,
               private authService: AuthService) {}
-
-  doLogin() {
-    console.log(this.userName);
-    const auth$ = this.authService.doAuthenticate();
-    auth$.subscribe((authenticated: boolean) => {
-      console.log('Authenticated: ', authenticated);
-      this.loggedIn = authenticated;
-      if (this.loggedIn) {
-        this.router.navigate(['/ai-chat']).then(() => {
-          console.log('routing done');
-        });
-      }
-    });
-  }
 
   ngOnInit(): void {
   }
 
   ngOnDestroy(): void {}
-
-  displayUser() {
-    console.log(this.userName);
-  }
-
 
 }

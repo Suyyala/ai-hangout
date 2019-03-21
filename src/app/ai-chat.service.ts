@@ -7,7 +7,6 @@ import {firestore} from 'firebase';
   providedIn: 'root'
 })
 export class AiChatService {
-  userId = 'rahim';
 
   constructor(private readonly afs: AngularFirestore) {
   }
