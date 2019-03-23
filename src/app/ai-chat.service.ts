@@ -95,17 +95,35 @@ export class AiChatService {
 
   }
 
-  createUser(userId: string) {
+  createUser(userId: string, userName: string) {
     return this.afs.collection('ai-users')
       .doc(userId)
       .collection('docs')
       .doc('user-info')
-      .set({name: '', userId});
+      .set({userName, userId});
   }
 
   getUser(userId: string) {
+    console.log('check user existence: ', userId);
     return this.afs.collection('ai-users')
       .doc(userId)
+      .collection('docs')
+      .doc('user-info')
       .get();
+  }
+
+  getUserDetails(userId: string) {
+    return this.afs.collection('ai-users')
+      .doc(userId)
+      .collection('docs')
+      .doc('user-info')
+      .snapshotChanges()
+      .pipe(
+        map(actions => {
+          const data: any = actions.payload.data();
+          console.log(data);
+          return data.userName;
+        }),
+      );
   }
 }

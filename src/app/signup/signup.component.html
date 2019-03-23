@@ -1,3 +1,7 @@
-<p>
-  signup works!
-</p>
+<form [formGroup]="userSignup" (ngSubmit)="onSubmit()">
+  <label>
+    Name:
+    <input type="text" formControlName="userName">
+  </label>
+  <button>Save</button>
+</form>

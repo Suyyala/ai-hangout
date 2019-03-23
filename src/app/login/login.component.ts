@@ -26,11 +26,12 @@ export class LoginComponent implements OnInit, OnDestroy {
       return;
     }
     this.chatService.getUser(userId).subscribe( (doc) => {
-      if (!doc.exists) {
-        this.router.navigate(['signup']).then( () => {});
-        return;
+      if (doc.exists) {
+        this.router.navigate(['/ai-chat', userId]).then(() => {
+        });
+      } else {
+        this.router.navigate(['/signup', userId]).then( () => {});
       }
-      this.router.navigate(['ai-chat']).then(() => {});
     });
 
 
