@@ -11,7 +11,7 @@ export class AiChatService {
   constructor(private readonly afs: AngularFirestore) {
   }
 
-  postMessage(roomId: string, msg: any) {
+  postMessage(roomId: string, userId: string, msg: any) {
     console.log('In PostMessage', msg);
     return this.afs.collection('ai-chats')
       .doc(roomId)
@@ -20,7 +20,7 @@ export class AiChatService {
       .update({
       messages: firestore.FieldValue.arrayUnion({
         message: msg,
-        userId: 'rahim'
+        userId
       })
     });
 
@@ -57,7 +57,8 @@ export class AiChatService {
       );
   }
 
-  createChatRoom(): Promise<string> {
+  createChatRoom(userId: string,
+                 chatName: string): Promise<string> {
     return new Promise((resolve, reject) => {
       this.afs.collection('ai-chats')
         .add({})
@@ -68,7 +69,12 @@ export class AiChatService {
             .set({messages: []})
             .then( (msgRef) => {
               console.log('messages document is created', msgRef);
-              resolve(docRef.id);
+              this.joinChatRoom(userId, docRef.id, chatName)
+                .then((data) => {
+                  resolve(docRef.id);
+                }).catch( (error) => {
+                  reject(error);
+              });
             }).catch((error) => {
               console.log('failed to create document');
               reject(error);
@@ -96,11 +102,28 @@ export class AiChatService {
   }
 
   createUser(userId: string, userName: string) {
-    return this.afs.collection('ai-users')
-      .doc(userId)
-      .collection('docs')
-      .doc('user-info')
-      .set({userName, userId});
+    return new Promise( (resolve, reject) => {
+      this.afs.collection('ai-users')
+          .doc(userId)
+          .collection('docs')
+          .doc('user-info')
+          .set({userName, userId})
+        .then(() => {
+          this.afs.collection('ai-users')
+            .doc(userId)
+            .collection('docs')
+            .doc('chat-rooms')
+            .set({rooms: []})
+            .then( () => {
+              resolve(true);
+            }).catch((error) => {
+              reject(error);
+          });
+      }).catch((error) => {
+        reject(error);
+      });
+      }
+    );
   }
 
   getUser(userId: string) {

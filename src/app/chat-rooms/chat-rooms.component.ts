@@ -1,4 +1,4 @@
-import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {AiChatService} from '../ai-chat.service';
 
 @Component({
@@ -10,8 +10,8 @@ export class ChatRoomsComponent implements OnInit {
 
   chatRooms: any;
   @Output() roomSelected = new EventEmitter<string>();
-  roomId = 'room1';
-  userId = 'rahim';
+  roomId;
+  @Input() userId;
 
   constructor(private chatService: AiChatService) { }
 

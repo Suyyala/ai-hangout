@@ -13,6 +13,7 @@ export class ChatComponent implements OnInit, OnChanges {
     msg: new FormControl(''),
   });
   @Input() roomId;
+  @Input() userId;
   constructor(private aiChatService: AiChatService) { }
 
   ngOnInit() {
@@ -21,7 +22,7 @@ export class ChatComponent implements OnInit, OnChanges {
   onSubmit() {
     console.log(this.aiChat.value);
     if (this.roomId) {
-      this.aiChatService.postMessage(this.roomId, this.aiChat.value.msg)
+      this.aiChatService.postMessage(this.roomId, this.userId, this.aiChat.value.msg)
         .then( (data) => {
           console.log('Posted');
         })

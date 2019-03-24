@@ -1,7 +1,7 @@
 <p>Hello {{userName}}</p>
 <button (click)="doLogout()">Logout</button>
-<app-chat-rooms (roomSelected)="onRoomSelected($event)"></app-chat-rooms>
+<app-chat-rooms [userId]="userId" (roomSelected)="onRoomSelected($event)"></app-chat-rooms>
 <app-chat-messages [roomId]='room' *ngIf="room"></app-chat-messages>
-<app-chat [roomId]='room' *ngIf="room"></app-chat>
-<app-add-chat></app-add-chat>
+<app-chat [userId]="userId" [roomId]='room' *ngIf="room"></app-chat>
+<app-add-chat [userId]="userId"></app-add-chat>
 

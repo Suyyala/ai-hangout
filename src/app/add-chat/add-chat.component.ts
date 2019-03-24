@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {AiChatService} from '../ai-chat.service';
 import {FormControl, FormGroup} from '@angular/forms';
 
@@ -11,6 +11,8 @@ export class AddChatComponent implements OnInit {
   newChat = new FormGroup({
     chatName: new FormControl(''),
   });
+  @Input() userId: string;
+  chatName: string;
 
   constructor(private chatService: AiChatService) { }
 
@@ -19,16 +21,10 @@ export class AddChatComponent implements OnInit {
 
   onNewChat() {
     console.log('creating new chat..', this.newChat.value);
-    const chatName = this.newChat.value.chatName;
-    this.chatService.createChatRoom()
+    this.chatName = this.newChat.value.chatName;
+    this.chatService.createChatRoom(this.userId, this.chatName)
       .then( (roomId: string) => {
         console.log(roomId);
-        this.chatService.joinChatRoom('rahim', roomId, chatName)
-          .then((data) => {
-            console.log('Joined room');
-          }).catch((error) => {
-            console.log('Failed to Join the room');
-        });
       }).catch((error) => {
         console.log('failed to create chat room');
     });

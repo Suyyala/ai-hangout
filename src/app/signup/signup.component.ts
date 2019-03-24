@@ -24,7 +24,7 @@ export class SignupComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.routeParams$ = this.route.params.subscribe((params) => {
-      this.userId = params['userId'];
+      this.userId = params.userId;
       console.log('UserId received', this.userId);
     });
   }
@@ -38,8 +38,15 @@ export class SignupComponent implements OnInit, OnDestroy {
     this.chatService.createUser(this.userId, this.userSignup.value.userName)
       .then((data) => {
         console.log('Created User Successfully!!');
-        this.router.navigate(['/ai-chat', this.userId]);
-      });
+        this.chatService.createChatRoom(this.userId, 'self')
+          .then( () => {
+            this.router.navigate(['/ai-chat', this.userId]);
+          }).catch( (error) => {
+           console.log('failed ot createChatRoom..', this.userId, 'self');
+          });
+      }).catch( (error) => {
+        console.log('failed to create a user ', error);
+    });
   }
 
 }
