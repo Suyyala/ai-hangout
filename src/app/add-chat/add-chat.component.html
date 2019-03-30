@@ -2,3 +2,6 @@
   <input type="text" formControlName="chatName">
   <button (click)="onNewChat()">NewChat</button>
 </form>
+<ul>
+  <li *ngFor="let user of users">{{user}}</li>
+</ul>

@@ -13,11 +13,17 @@ export class AddChatComponent implements OnInit {
   });
   @Input() userId: string;
   chatName: string;
+  users = [];
 
   constructor(private chatService: AiChatService) { }
 
   ngOnInit() {
+    this.chatService.getUsers()
+      .subscribe( (docIds: []) => {
+        this.users = docIds;
+      });
   }
+
 
   onNewChat() {
     console.log('creating new chat..', this.newChat.value);

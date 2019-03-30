@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 import {AngularFirestore, DocumentReference} from '@angular/fire/firestore';
 import {map} from 'rxjs/operators';
 import {firestore} from 'firebase';
+import {Observable} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -105,8 +106,6 @@ export class AiChatService {
     return new Promise( (resolve, reject) => {
       this.afs.collection('ai-users')
           .doc(userId)
-          .collection('docs')
-          .doc('user-info')
           .set({userName, userId})
         .then(() => {
           this.afs.collection('ai-users')
@@ -130,16 +129,12 @@ export class AiChatService {
     console.log('check user existence: ', userId);
     return this.afs.collection('ai-users')
       .doc(userId)
-      .collection('docs')
-      .doc('user-info')
       .get();
   }
 
   getUserDetails(userId: string) {
     return this.afs.collection('ai-users')
       .doc(userId)
-      .collection('docs')
-      .doc('user-info')
       .snapshotChanges()
       .pipe(
         map(actions => {
@@ -148,5 +143,18 @@ export class AiChatService {
           return data.userName;
         }),
       );
+  }
+
+  getUsers() {
+    return Observable.create( (observer) => {
+      this.afs.collection('ai-users')
+      .get().subscribe( (querySnap) => {
+        const docIds = [];
+        querySnap.docs.forEach( (doc) => {
+          docIds.push(doc.id);
+        });
+        observer.next(docIds);
+      });
+    });
   }
 }
