@@ -35,4 +35,11 @@ export class AddChatComponent implements OnInit {
         console.log('failed to create chat room');
     });
   }
+
+  onInvite(user) {
+    this.chatService.createChatRoom(this.userId, user).then( (roomId) => {
+      this.chatService.setActions(user, {userId: user, roomId, chatName: user});
+    });
+
+  }
 }

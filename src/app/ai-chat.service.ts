@@ -157,4 +157,29 @@ export class AiChatService {
       });
     });
   }
+
+  getActions(userId: string) {
+    return this.afs.collection('ai-users')
+      .doc(userId)
+      .collection('docs')
+      .doc('actions')
+      .snapshotChanges()
+      .pipe(
+        map(actions => {
+          const data: any = actions.payload.data();
+          console.log(data);
+          return data;
+        }),
+      );
+  }
+
+  setActions(userId: string, invite: any) {
+    return this.afs.collection('ai-users')
+      .doc(userId)
+      .collection('docs')
+      .doc('actions')
+      .update({
+        invites: firestore.FieldValue.arrayUnion(invite)
+      });
+  }
 }
