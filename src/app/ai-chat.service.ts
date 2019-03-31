@@ -173,7 +173,17 @@ export class AiChatService {
       );
   }
 
-  setActions(userId: string, invite: any) {
+  updateActions(userId: string, invites: any) {
+    return this.afs.collection('ai-users')
+      .doc(userId)
+      .collection('docs')
+      .doc('actions')
+      .update({
+        invites
+      });
+  }
+
+  addActions(userId: string, invite: any) {
     return this.afs.collection('ai-users')
       .doc(userId)
       .collection('docs')
@@ -182,4 +192,6 @@ export class AiChatService {
         invites: firestore.FieldValue.arrayUnion(invite)
       });
   }
+
+
 }

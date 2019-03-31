@@ -38,7 +38,7 @@ export class AddChatComponent implements OnInit {
 
   onInvite(user) {
     this.chatService.createChatRoom(this.userId, user).then( (roomId) => {
-      this.chatService.setActions(user, {userId: this.userId, roomId, chatName: this.userId});
+      this.chatService.addActions(user, {userId: this.userId, roomId, chatName: this.userId, accepted: false});
     });
 
   }

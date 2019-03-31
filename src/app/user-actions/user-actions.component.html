@@ -1,5 +1,6 @@
-<ul>
-  <li *ngFor="let invite of invites">Invite From {{invite.userId}}
+<div *ngFor="let invite of invites">
+  <div *ngIf="invite.accepted === false">
+    <p>Invite From {{invite.userId}}</p>
     <button (click)="onAccept(invite)">Accept</button>
-  </li>
-</ul>
+  </div>
+</div>

@@ -3,6 +3,9 @@
   <button (click)="onNewChat()">NewChat</button>
 </form>
 <p>Users:</p>
-<ul>
-  <li *ngFor="let user of users">{{user}} <button (click)="onInvite(user)">Invite</button></li>
-</ul>
+<div>
+  <div *ngFor="let user of users">
+    <p>{{user}}</p>
+    <button (click)="onInvite(user)">Invite</button>
+  </div>
+</div>
