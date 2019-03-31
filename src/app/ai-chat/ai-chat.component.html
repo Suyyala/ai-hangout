@@ -1,5 +1,4 @@
-<p>Hello {{userName}}</p>
-<button (click)="doLogout()">Logout</button>
+<app-navbar></app-navbar>
 <app-chat-rooms [userId]="userId" (roomSelected)="onRoomSelected($event)"></app-chat-rooms>
 <app-chat-messages [roomId]='room' *ngIf="room"></app-chat-messages>
 <app-chat [userId]="userId" [roomId]='room' *ngIf="room"></app-chat>

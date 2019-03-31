@@ -20,6 +20,8 @@ import {SignupComponent} from './signup/signup.component';
 import { UserActionsComponent } from './user-actions/user-actions.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {AppMaterialModule} from './app-material.module';
+import { NavbarComponent } from './navbar/navbar.component';
+import { LayoutModule } from '@angular/cdk/layout';
 
 
 @NgModule({
@@ -34,6 +36,7 @@ import {AppMaterialModule} from './app-material.module';
     AddChatComponent,
     SignupComponent,
     UserActionsComponent,
+    NavbarComponent,
   ],
   imports: [
     BrowserModule,
@@ -44,7 +47,8 @@ import {AppMaterialModule} from './app-material.module';
     AngularFireDatabaseModule,
     AngularFireAuthModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
-    AppMaterialModule
+    AppMaterialModule,
+    LayoutModule,
   ],
   providers: [
     AngularFirestore
