@@ -1,14 +1,13 @@
 <div id="re-captcha"></div>
 <form [formGroup]="phoneLogin" (ngSubmit)="onSubmit()">
-  <label>
-    Phone Number:
-    <input type="text" formControlName="phoneNumber">
-  </label>
+  <mat-form-field>
+    <input type="tel" matInput placeholder="Phone" formControlName="phoneNumber">
+  </mat-form-field>
 </form>
 
 <form [formGroup]="phoneVerify" (ngSubmit)="verifyPhoneCode()" *ngIf="windowRef.confirmationResult">
   <hr>
-  <label for="code">Enter your Verification Code Here</label><br>
-  <input type="text" name="code" formControlName="verifyCode">
-  <button>Verify</button>
+  <mat-form-field>
+    <input type="text" name="code" matInput placeholder="Verification Code" formControlName="verifyCode">
+  </mat-form-field>
 </form>

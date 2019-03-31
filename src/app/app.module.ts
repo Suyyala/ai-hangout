@@ -19,6 +19,7 @@ import {AddChatComponent} from './add-chat/add-chat.component';
 import {SignupComponent} from './signup/signup.component';
 import { UserActionsComponent } from './user-actions/user-actions.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {AppMaterialModule} from './app-material.module';
 
 
 @NgModule({
@@ -43,6 +44,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
     AngularFireDatabaseModule,
     AngularFireAuthModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
+    AppMaterialModule
   ],
   providers: [
     AngularFirestore

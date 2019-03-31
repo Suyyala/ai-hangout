@@ -1,3 +1,6 @@
-<p *ngFor="let message of messages">
-  {{message.userId + ': '}} {{message.message}}
-</p>
+<cdk-virtual-scroll-viewport itemSize="50" class="example-viewport">
+  <div *cdkVirtualFor="let message of messages" class="example-item">
+    {{message.userId + ': '}} {{message.message}}
+  </div>
+</cdk-virtual-scroll-viewport>
+
