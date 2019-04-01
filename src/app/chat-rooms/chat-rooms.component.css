@@ -1,9 +1,9 @@
-.example-viewport {
-  height: 200px;
-  width: 200px;
+.rooms-viewport {
+  width: 100%;
+  min-height: 680px;
   border: 1px solid black;
 }
 
-.example-item {
+.rooms-item {
   height: 50px;
 }

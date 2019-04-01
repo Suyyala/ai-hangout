@@ -1,6 +1,7 @@
-<cdk-virtual-scroll-viewport itemSize="50" class="example-viewport">
-  <div *cdkVirtualFor="let message of messages" class="example-item">
+<cdk-virtual-scroll-viewport itemSize="50" class="messages-viewport">
+  <div *cdkVirtualFor="let message of messages" class="message-item">
     {{message.userId + ': '}} {{message.message}}
   </div>
 </cdk-virtual-scroll-viewport>
+<app-chat [userId]="userId" [roomId]='roomId' *ngIf="roomId"></app-chat>
 

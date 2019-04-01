@@ -3,6 +3,7 @@ import {FormControl, FormGroup} from '@angular/forms';
 import {AngularFireAuth} from '@angular/fire/auth';
 import {auth} from 'firebase';
 import {Router} from '@angular/router';
+import {environment} from '../../environments/environment';
 
 
 @Component({
@@ -32,6 +33,10 @@ export class PhoneLoginComponent implements OnInit {
 
   onSubmit() {
     console.log('entered number', this.phoneLogin.value);
+    if (!environment.production) {
+      this.verifyDone.emit(this.phoneLogin.value.phoneNumber);
+      return;
+    }
     this.afAuth.auth.signInWithPhoneNumber(this.phoneLogin.value.phoneNumber, this.windowRef.reCaptcha)
       .then( (confirmationResult) => {
         console.log(confirmationResult);
@@ -42,6 +47,10 @@ export class PhoneLoginComponent implements OnInit {
   }
 
   verifyPhoneCode() {
+    if (!environment.production) {
+      this.verifyDone.emit(this.phoneLogin.value.phoneNumber);
+      return;
+    }
     this.windowRef.confirmationResult.confirm(this.phoneVerify.value.verifyCode)
       .then( (user) => {
         this.user = user;
@@ -50,6 +59,6 @@ export class PhoneLoginComponent implements OnInit {
       }).catch((error) => {
         console.log('something bad happended', error);
         this.verifyDone.emit(null);
-    }) ;
+    });
   }
 }

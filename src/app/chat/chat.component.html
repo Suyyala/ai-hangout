@@ -1,5 +1,9 @@
 
 <form [formGroup]="aiChat">
-  <input type="text" formControlName="msg">
-  <button (click)="onSubmit()">Send</button>
+  <mat-form-field class="chat-form-field">
+    <input type="text" matInput formControlName="msg">
+  </mat-form-field>
+  <button mat-button color="primary" (click)="onSubmit()">
+    <mat-icon>send</mat-icon>
+  </button>
 </form>

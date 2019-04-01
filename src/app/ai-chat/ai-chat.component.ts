@@ -22,7 +22,7 @@ export class AiChatComponent implements OnInit {
     console.log('This is user', this.userId);
     this.route.params.subscribe((params) => {
       console.log('Router Params', params);
-      this.userId = params['userId'];
+      this.userId = params.userId;
       this.chatService.getUserDetails(this.userId)
         .subscribe( (userName: string) => {
           console.log(userName);
@@ -40,11 +40,6 @@ export class AiChatComponent implements OnInit {
       }).catch( (error) => {
         console.log('This shouldnt happen, Retry..');
     });
-  }
-
-  onRoomSelected(event) {
-    this.room = event.valueOf();
-    console.log(this.room);
   }
 
 

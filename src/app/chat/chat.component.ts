@@ -29,6 +29,7 @@ export class ChatComponent implements OnInit, OnChanges {
         .catch((data) => {
           console.log('message post failed');
         });
+      this.aiChat.reset();
     }
   }
 

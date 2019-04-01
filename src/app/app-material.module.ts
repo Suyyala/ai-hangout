@@ -44,6 +44,7 @@ import {
   MatTreeModule,
   MatFormFieldModule,
 } from '@angular/material';
+import {FlexLayoutModule} from '@angular/flex-layout';
 
 @NgModule({
   exports: [
@@ -90,6 +91,7 @@ import {
     PortalModule,
     ScrollingModule,
     MatFormFieldModule,
+    FlexLayoutModule,
   ]
 })
 export class AppMaterialModule {}

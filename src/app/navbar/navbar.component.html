@@ -20,6 +20,9 @@
         *ngIf="isHandset$ | async">
         <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
       </button>
+      <button type="button" mat-icon-button (click)="onNavigateBack()">
+        <mat-icon>keyboard_arrow_left</mat-icon>
+      </button>
       <span>ai-hangout</span>
     </mat-toolbar>
     <!-- Add Content Here -->
