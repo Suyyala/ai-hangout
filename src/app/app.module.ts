@@ -22,6 +22,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {AppMaterialModule} from './app-material.module';
 import { NavbarComponent } from './navbar/navbar.component';
 import { LayoutModule } from '@angular/cdk/layout';
+import { RoomDetailsComponent } from './room-details/room-details.component';
 
 
 @NgModule({
@@ -37,6 +38,7 @@ import { LayoutModule } from '@angular/cdk/layout';
     SignupComponent,
     UserActionsComponent,
     NavbarComponent,
+    RoomDetailsComponent,
   ],
   imports: [
     BrowserModule,

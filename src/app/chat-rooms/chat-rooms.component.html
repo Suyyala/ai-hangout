@@ -1,6 +1,6 @@
-<cdk-virtual-scroll-viewport itemSize="50" class="rooms-viewport">
+<cdk-virtual-scroll-viewport itemSize="150" class="rooms-viewport">
   <div *cdkVirtualFor="let room of chatRooms" class="rooms-item">
-    <button (click)="onSelected(room.chatId)">{{room.chatName}}</button>
+      <app-room-details [roomInfo]="room" (click)="onSelected(room.chatId)"></app-room-details>
   </div>
 </cdk-virtual-scroll-viewport>
 
