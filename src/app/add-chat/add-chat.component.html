@@ -7,6 +7,7 @@
 <p>Users:</p>
 <mat-list>
   <mat-list-item *ngFor="let user of users">
+    <mat-divider></mat-divider>
     <mat-icon>account_circle</mat-icon>
   <p>{{user}}</p>
     <button mat-button color="primary" (click)="onInvite(user)">Invite</button>

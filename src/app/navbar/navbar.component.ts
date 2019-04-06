@@ -38,8 +38,7 @@ export class NavbarComponent implements  OnInit {
 
   onNewChat() {
     if (this.userId) {
-      this.router.navigate(['/ai-chat/newChat', this.userId]).then();
-      this.router.navigate(['newChat'], {relativeTo: this.route});
+      this.router.navigate(['newChat', {userId: this.userId}], {relativeTo: this.route}).then();
     }
   }
 }
