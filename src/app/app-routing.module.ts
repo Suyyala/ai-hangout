@@ -6,6 +6,7 @@ import {AuthGuard} from './auth.guard';
 import {SignupComponent} from './signup/signup.component';
 import {ChatRoomsComponent} from './chat-rooms/chat-rooms.component';
 import {ChatMessagesComponent} from './chat-messages/chat-messages.component';
+import {AddChatComponent} from './add-chat/add-chat.component';
 
 const routes: Routes = [
   {path: '', redirectTo: '/login', pathMatch: 'full'},
@@ -15,6 +16,7 @@ const routes: Routes = [
   children: [
     {path: '', component: ChatRoomsComponent},
     {path: 'room', component: ChatMessagesComponent},
+    {path: 'newChat', component: AddChatComponent},
   ]}
 ];
 

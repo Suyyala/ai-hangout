@@ -1,6 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {AiChatService} from '../ai-chat.service';
 import {FormControl, FormGroup} from '@angular/forms';
+import {ActivatedRoute, Router} from '@angular/router';
 
 @Component({
   selector: 'app-add-chat',
@@ -11,13 +12,20 @@ export class AddChatComponent implements OnInit {
   newChat = new FormGroup({
     chatName: new FormControl(''),
   });
-  @Input() userId: string;
+  userId: string;
   chatName: string;
   users = [];
 
-  constructor(private chatService: AiChatService) { }
+  constructor(private chatService: AiChatService,
+              private route: ActivatedRoute,
+              private router: Router) { }
 
   ngOnInit() {
+
+    this.route.params.subscribe((params) => {
+      console.log('Router Params', params);
+      this.userId = params.userId;
+    });
     this.chatService.getUsers()
       .subscribe( (docIds: []) => {
         this.users = docIds;
@@ -31,6 +39,7 @@ export class AddChatComponent implements OnInit {
     this.chatService.createChatRoom(this.userId, this.chatName)
       .then( (roomId: string) => {
         console.log(roomId);
+        this.router.navigate(['../room', {roomId, userId: this.userId}], {relativeTo: this.route} );
       }).catch((error) => {
         console.log('failed to create chat room');
     });
