@@ -10,7 +10,7 @@ import {el} from '@angular/platform-browser/testing/src/browser_util';
 export class UserActionsComponent implements OnInit {
 
   @Input() userId: string;
-  private invites = [];
+  invites = [];
 
   constructor(private chatService: AiChatService) { }
 
